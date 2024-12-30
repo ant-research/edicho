@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- === Header Starts === -->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Edicho</title>
+
+  <link href="./assets/bootstrap.min.css" rel="stylesheet">
+  <link href="./assets/font.css" rel="stylesheet" type="text/css">
+  <link href="./assets/style.css" rel="stylesheet" type="text/css">
+  <style>
+    .container_rendering {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .item {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+    }
+    .item img {
+        width: 50%;
+        height: auto;
+        margin-right: 0px;
+    }
+    .item video {
+        width: 50%;
+        height: auto;
+    }
+</style>
+</head>
+<!-- === Header Ends === -->
+
+
+<body>
+
+
+<!-- === Home Section Starts === -->
+<div class="section">
+  <!-- === Title Starts === -->
+  <div class="header">
+    <div class="title", style="padding-top: 35pt;min-width: 200px;">  <!-- Set padding as 10 if title is with two lines. -->
+      Edicho: Consistent Image Editing in the Wild
+    </div>
+   <h2 style="font-size:20px;text-align:center;">  <h2>
+  </div>
+  <!-- === Title Ends === -->
+  <div class="author">
+    <a href="https://scholar.google.com/citations?user=xUMjxi4AAAAJ" target="_blank">Qingyan Bai</a><sup>1, 2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://ken-ouyang.github.io" target="_blank">Hao Ouyang</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://justimyhxu.github.io" target="_blank">Yinghao Xu</a><sup>3</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://scholar.google.com/citations?user=VRsy9v8AAAAJ" target="_blank">Qiuyu Wang</a><sup>2</sup>  <br>
+    <a href="https://ceyuan.me/" target="_blank">Ceyuan Yang</a><sup>4</sup> &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://felixcheng97.github.io/" target="_blank">Ka Leong Cheng</a><sup>1, 2</sup> &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://shenyujun.github.io/" target="_blank">Yujun Shen</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://cqf.io/" target="_blank">Qifeng Chen</a><sup>1</sup>
+  </div>
+  
+  <div class="institution">
+    <sup>1</sup> HKUST&nbsp;&nbsp;&nbsp;&nbsp;
+    <sup>2</sup> Ant Group&nbsp;&nbsp;&nbsp;&nbsp;
+    <sup>3</sup> Stanford University&nbsp;&nbsp;&nbsp;&nbsp;
+    <sup>4</sup> CUHK &nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+
+  <div class="link">
+    <a href="https://arxiv.org/pdf/2412.XXXXX" target="_blank">[Paper]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/EzioBy/edicho" target="_blank">[Code]</a>
+
+  </div>
+  <div class="teaser">
+    <img src="./assets/teaser.jpg">
+  </div>
+</div>
+<!-- === Home Section Ends === -->
+
+
+<!-- === Overview Section Starts === -->
+<div class="section">
+  <div class="title">Overview</div>
+  <div class="body">
+    As a verified need, consistent editing across in-the-wild images remains a technical challenge arising from various unmanageable factors, like object poses, lighting conditions, and photography environments.
+    <i>Edicho</i> steps in with a training-free solution based on diffusion models, featuring a fundamental design principle of using <b>explicit</b> image correspondence to direct editing.
+    Specifically, the key components include an attention manipulation module and a carefully refined classifier-free guidance (CFG) denoising strategy, both of which take into account the pre-estimated correspondence.
+    Such an inference-time algorithm enjoys a plug-and-play nature and is compatible to most diffusion-based editing methods, such as ControlNet and BrushNet.
+    Extensive results demonstrate the efficacy of <i>Edicho</i> in consistent cross-image editing under diverse settings.
+
+  </div>
+</div>
+<!-- === Overview Section Ends === -->
+
+
+
+<!-- === Method Section Starts === -->
+<div class="section">
+  <div class="title">Method</div>
+  <div class="body">
+
+    <b>Motivation.</b>
+    In the task of in-the-wild image editing, learning-based methods often lack proper regularization, 
+    resulting in inconsistent edits due to the difficulty of obtaining high-quality training data and enforcing uniformity constraints. 
+    Non-optimization methods rely on implicit correspondence from attention features for appearance transfer, but struggle with unstable predictions and intrinsic image variations, 
+    leading to inconsistent or distorted edits. We visualize the correspondence predicted respectively by explicit and attention-based implicit methods in the figure below, 
+    accompanied by the attention maps for correspondence prediction (regions with the highest attention weights are outlined with dashed circles). 
+
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/corr.jpg" width="80%"></td>
+      </tr>
+    </table>
+
+    <b>Framework.</b>
+    To achieve consistent editing, we propose a training-free and plug-and-play method which first predicts the explicit correspondence for the input
+    images. The pre-computed correspondence is injected into the pre-trained diffusion models and guide the denoising in the two levels of (a)
+    attention features and (b) noisy latents in classifier-free guidance (CFG), as in the figure below.
+
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/pipeline.jpg" width="98%"></td>
+      </tr>
+    </table>
+
+
+  </div>
+</div>
+<!-- === Method Section Ends === -->
+
+
+<!-- === Result Section Starts === -->
+<div class="section">
+  <div class="title">Results</div>
+  <div class="body">
+
+    Shown below are <b>qualitative comparisons</b> respectively on global and local editing.<br><br>
+    <table width="100%" style="margin: 0pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/global_comparison.jpg" width="95%"></td>
+      </tr>
+    </table>
+    <table width="100%" style="margin: 10pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/local_comparison.jpg" width="95%"></td>
+      </tr>
+    </table>
+  <br>
+
+
+  With outputs from our consistent editing method (upper) and the customization techniques, 
+  <b>customized generation</b> (lower) could be achieved by injecting the edited concepts into the generative model.
+
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/customization.jpg" width="53%"></td>
+      </tr>
+    </table>
+
+    We also adopt the neural regressor Dust3R for <b>3D reconstruction</b> based on the edits by <b>matching</b> the 2D points in a 3D space:
+
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/3d_matching.jpg" width="95%"></td>
+        
+      </tr>
+    </table>
+
+  </div>
+</div>
+<!-- === Result Section Ends === -->
+
+<!-- === Result Section Starts === -->
+<div class="section">
+  <div class="title">Additional Results</div>
+  <div class="body">
+
+    Shown below are additional qualitative results of the proposed method for local (upper three) and global editing (lower three ones). The inpainted
+regions for local editing are indicated with the light red color. “Fixed Seed” indicates editing results from the same random seed (the same
+initial noise).
+
+    <table width="100%" style="margin: 20pt 0; text-align: center;">
+      <tr>
+        <td><img src="./assets/additional_results.jpg" width="90%"></td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+<!-- === Result Section Ends === -->
+
+
+<!-- === Reference Section Starts === -->
+<div class="section">
+  <div class="bibtex">BibTeX</div>
+<pre>
+@inproceedings{bai2024edicho,
+  title     = {Edicho: Consistent Image Editing in the Wild},
+  author    = {Bai, Qingyan and Ouyang, Hao and Xu, Yinghao and Wang, Qiuyu and Yang, Ceyuan and Cheng, Ka Leong and Shen, Yujun and Chen, Qifeng},
+  booktitle = {arXiv preprint arXiv:2412.XXXXX},
+  year      = {2024}
+}
+</pre>
+
+  
+
+
+</div>
+<!-- === Reference Section Ends === -->
+
+</body>
+</html>
