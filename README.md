@@ -10,7 +10,7 @@
 **Figure:**  Given two images in the wild, Edicho generates consistent editing versions of them in a zero-shot manner. Our approach
 achieves precise consistency for editing parts (left), objects (middle), and the entire images (right) by leveraging explicit correspondence.
 
-**[**[**Paper**](https://arxiv.org/pdf/2412.21079)**]**
+**[**[**Paper**](https://arxiv.org/abs/2412.21079)**]**
 **[**[**Project Page**](https://ezioby.github.io/edicho/)**]**
 
 As a verified need, consistent editing across in-the-wild images remains a technical challenge arising from various unmanageable factors, like object poses, lighting conditions, and photography environments.
