@@ -28,7 +28,7 @@ Extensive results demonstrate the efficacy of <i>Edicho</i> in consistent cross-
 
 ## How to Run
 
-### 1) Installation / Environment setup
+### 1) Environment setup
 
 - Main dependencies (pip install -e .) | [BrushNet extras](examples/brushnet/requirements.txt) | [DIFT env](https://github.com/Tsingularity/dift/blob/main/environment.yml)
 
