@@ -28,12 +28,16 @@ Extensive results demonstrate the efficacy of <i>Edicho</i> in consistent cross-
 
 ## How to Run
 
-### 1) Prepare pretrained model weights
+### 1) Installation / Environment setup
+
+- Main dependencies (pip install -e .) | [BrushNet extras](examples/brushnet/requirements.txt) | [DIFT env](https://github.com/Tsingularity/dift/blob/main/environment.yml)
+
+### 2) Prepare pretrained model weights
 
 - The editing model: [Sanster/brushnet_segmentation_mask](https://huggingface.co/Sanster/brushnet_segmentation_mask/tree/main)
 - The base diffusion model: `realisticVision_diffusers` (for instance, [this model](https://huggingface.co/emilianJR/RealisticVision_V2)). Set `--base_model_path` to the local path of this model checkpoint directory.
 
-### 2) Run inference
+### 3) Run inference
 
 Organize your inputs under one folder (e.g., `./images/toy`) with images and masks:
 - Images named like `input_*.png` or `input_*.jpg`

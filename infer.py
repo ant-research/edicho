@@ -168,7 +168,7 @@ def parse_args():
     parser.add_argument("--prompt_add", type=str, default=", high quality", help="Additional prompt to append")
 
     # Model paths
-    parser.add_argument("--base_model_path", type=str, default="/home/qingyan/checkpoints/realisticVision_diffuser", help="Base model path")
+    parser.add_argument("--base_model_path", type=str, default="/path/to/checkpoints/realisticVision_diffuser", help="Base model path")
     parser.add_argument("--brushnet_path", type=str, default="Sanster/brushnet_segmentation_mask", help="BrushNet checkpoint path")
 
     # Sampling steps and seed
