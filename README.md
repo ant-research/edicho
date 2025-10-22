@@ -26,6 +26,36 @@ Extensive results demonstrate the efficacy of <i>Edicho</i> in consistent cross-
 **Figure:**  Method overview. To achieve consistent editing, we propose a training-free and plug-and-play method that injects the pre-computed correspondence into the pre-trained diffusion models and guides the denoising in the two levels of (a) attention features and (b) noisy latents in classifier-free guidance (CFG).
 
 
+## How to Run
+
+### 1) Prepare pretrained model weights
+
+- The editing model: [Sanster/brushnet_segmentation_mask](https://huggingface.co/Sanster/brushnet_segmentation_mask/tree/main)
+- The base diffusion model: `realisticVision_diffusers` (for instance, [this model](https://huggingface.co/emilianJR/RealisticVision_V2)). Set `--base_model_path` to the local path of this model checkpoint directory.
+
+### 2) Run inference
+
+Organize your inputs under one folder (e.g., `./images/toy`) with images and masks:
+- Images named like `input_*.png` or `input_*.jpg`
+- Masks named like `mask_*.jpg`
+
+Then run:
+
+```bash
+python infer.py \
+  --base_model_path /path/to/checkpoints \
+  --brushnet_path Sanster/brushnet_segmentation_mask \
+  --in_dir ./images/toy \
+  --save_dir_root ./results \
+  --prompt_main "Your prompt" \
+  --prompt_add "Prompt suffix" \
+  --num_inference_steps 50 \
+  --seed 42
+```
+
+Outputs will be saved under `./results/<input_folder_name>/` as a concatenated image.
+
+
 ## BibTeX
 
 If you find our work helpful for your research, please consider to cite:
